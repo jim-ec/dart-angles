@@ -1,14 +1,14 @@
 name: angles
 description: Utility library for handling ANGLES in radians, degrees and turns.
-# version: 1.0.0
-# homepage: https://www.example.com
-# author: jimec <email@example.com>
+author: Jim Eckerlein <jim.eckerlein@gmail.com>
+homepage: https://github.com/Jim-Eckerlein/dart-angles
+version: 1.0.0
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
 
-#dependencies:
-#  path: ^1.4.1
+dependencies:
+  meta: ^1.0.0
 
 dev_dependencies:
   test: ^1.0.0
