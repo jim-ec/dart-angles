@@ -1,5 +1,5 @@
 name: angles
-description: A starting point for Dart libraries or applications.
+description: Utility library for handling ANGLES in radians, degrees and turns.
 # version: 1.0.0
 # homepage: https://www.example.com
 # author: jimec <email@example.com>
