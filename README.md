@@ -1,4 +1,6 @@
-# dart-angles
+# Dart Angles
+
+[Official Dart package](https://pub.dartlang.org/packages/angles)
 
 **Never ever suffix your angle variables** with `...degress` or `...rad` and **forget about manual angle** conversions like `x * rad2deg`!
 
