@@ -119,4 +119,11 @@ class Angle implements Comparable<Angle> {
 
   @override
   int compareTo(Angle other) => this == other ? 0 : this > other ? 1 : -1;
+
+  @override
+  int get hashCode => _storage.hashCode;
+
+  @override
+  bool operator ==(covariant Angle rhs) => _storage == rhs._storage;
+
 }
