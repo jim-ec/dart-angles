@@ -111,19 +111,33 @@ class Angle implements Comparable<Angle> {
   @override
   String toString() => "${degrees.toStringAsFixed(1)}°";
 
-  /// Compares this to [other].
-  bool operator <(final Angle other) => _storage < other._storage;
-
-  /// Compares this to [other].
-  bool operator >(final Angle other) => _storage > other._storage;
-
   @override
   int compareTo(Angle other) => this == other ? 0 : this > other ? 1 : -1;
 
   @override
   int get hashCode => _storage.hashCode;
 
+  /// Compares this to [other].
+  bool operator <(final Angle other) => _storage < other._storage;
+
+  /// Compares this to [other].
+  bool operator >(final Angle other) => _storage > other._storage;
+
+  /// Compares this to [other].
+  bool operator <=(final Angle other) => _storage <= other._storage;
+
+  /// Compares this to [other].
+  bool operator >=(final Angle other) => _storage >= other._storage;
+
+  /// Compares to another angle.
+  /// Since IEEE 754 floating points are approximations to real numbers, they cannot
+  /// be really tested for equality.
   @override
-  bool operator ==(covariant Angle rhs) => _storage == rhs._storage;
+  bool operator ==(covariant final Angle rhs) => _storage == rhs._storage;
+
+  /// Checks if [rhs] is approximately this angle, +/- [range].
+  bool approximately(final Angle rhs, final double range) {
+    return rhs._storage >= _storage - range && rhs._storage <= _storage + range;
+  }
 
 }
