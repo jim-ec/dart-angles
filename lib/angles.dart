@@ -22,36 +22,50 @@ class Angle implements Comparable<Angle> {
 
   /// Create an angle defined by degrees.
   /// One full turn equals 360 degrees.
+  const Angle.degrees(final double degrees)
+      : _storage = degrees / 180.0 * math.pi;
+
+  @Deprecated("Use Angle.degrees instead")
   const Angle.fromDegrees(final double degrees)
       : _storage = degrees / 180.0 * math.pi;
 
   /// Create an angle from radians.
   /// One full turn equals 2pi radians.
+  const Angle.radians(final double radians) : _storage = radians;
+
+  @Deprecated("Use Angle.radians instead")
   const Angle.fromRadians(final double radians) : _storage = radians;
 
   /// Create an angle defined by gradians.
   /// One full turn equals 400 gradians.
+  const Angle.gradians(final double gradians)
+      : _storage = gradians / 200.0 * math.pi;
+
+  @Deprecated("Use Angle.gradians instead")
   const Angle.fromGradians(final double gradians)
       : _storage = gradians / 200.0 * math.pi;
 
   /// Create an angle defined by turns.
   /// One full turn equals 1 turn.
+  const Angle.turns(final double turns) : _storage = turns * 2.0 * math.pi;
+
+  @Deprecated("Use Angle.turns instead")
   const Angle.fromTurns(final double turns) : _storage = turns * 2.0 * math.pi;
 
   /// Create an angle defining one full turn.
-  factory Angle.fullTurn() => Angle.fromTurns(1.0);
+  factory Angle.fullTurn() => Angle.turns(1.0);
 
   /// Create an angle defining one half turn.
-  factory Angle.halfTurn() => Angle.fromTurns(0.5);
+  factory Angle.halfTurn() => Angle.turns(0.5);
 
   /// Create an angle defining one quarter turn.
-  factory Angle.quarterTurn() => Angle.fromTurns(0.25);
+  factory Angle.quarterTurn() => Angle.turns(0.25);
 
   /// Create an angle defining one third turn.
-  factory Angle.thirdTurn() => Angle.fromTurns(1.0 / 3.0);
+  factory Angle.thirdTurn() => Angle.turns(1.0 / 3.0);
 
   /// Create an angle defining one eighth turn.
-  factory Angle.eighthTurn() => Angle.fromTurns(0.125);
+  factory Angle.eighthTurn() => Angle.turns(0.125);
 
   /// Create an angle by computing the arc sine of [c].
   Angle.asin(final double c) : _storage = math.asin(c);
@@ -112,21 +126,19 @@ class Angle implements Comparable<Angle> {
   double get tan => math.tan(radians);
 
   /// Accumulate this and [other], returning a new angle.
-  Angle operator +(final Angle other) =>
-      Angle.fromRadians(radians + other.radians);
+  Angle operator +(final Angle other) => Angle.radians(radians + other.radians);
 
   /// Compute the difference of this to [other], returning a new angle.
-  Angle operator -(final Angle other) =>
-      Angle.fromRadians(radians - other.radians);
+  Angle operator -(final Angle other) => Angle.radians(radians - other.radians);
 
   /// Negate this angle, returning a new angle.
-  Angle operator -() => Angle.fromRadians(-radians);
+  Angle operator -() => Angle.radians(-radians);
 
   /// Scale this angle, returning a new angle.
-  Angle operator *(final double scale) => Angle.fromRadians(radians * scale);
+  Angle operator *(final double scale) => Angle.radians(radians * scale);
 
   /// Inverse scale this angle, returning a new angle.
-  Angle operator /(final double scale) => Angle.fromRadians(radians / scale);
+  Angle operator /(final double scale) => Angle.radians(radians / scale);
 
   /// Return a string representation of this angle, optimized to be readable.
   /// The angle is printed in degrees, and only one decimal digit is included.

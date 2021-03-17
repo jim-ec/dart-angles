@@ -9,9 +9,9 @@ This library provides a single class named `Angle`, wrapping your angle variable
 ```dart
 
 // Various ways to define a half turn:
-a0 = Angle.fromDegrees(180.0);
-a1 = Angle.fromRadians(math.pi);
-a2 = Angle.fromTurns(0.5);
+a0 = Angle.degrees(180.0);
+a1 = Angle.radians(math.pi);
+a2 = Angle.turns(0.5);
 
 a0.degrees; // = 180.0
 a1.radians; // = 3.1415...
@@ -33,6 +33,6 @@ Angles are immutable by design, but there are operators like `+`, creating new a
 ```dart
 
 // 270°:
-x = Angle.halfTurn() + Angle.fromDegrees(90.0);
+x = Angle.halfTurn() + Angle.degrees(90.0);
 
 ```
