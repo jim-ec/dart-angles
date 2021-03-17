@@ -1,6 +1,7 @@
 
 ## 2.0
 
+- Updated SDK version.
 - Add a `ratio()` function.
 - `Angle.atanFullTurn()` now creates angles which actually make sense.
 - `range` argument of `approximately()` must be non-negative.
