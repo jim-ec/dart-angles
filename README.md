@@ -19,7 +19,7 @@ a2.turns;   // = 0.5
 
 ```
 
-Trigonometic functions are defined on instances:
+Trigonometric functions are defined on instances:
 
 ```dart
 
