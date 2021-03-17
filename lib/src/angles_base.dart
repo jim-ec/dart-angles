@@ -65,8 +65,19 @@ class Angle implements Comparable<Angle> {
 
   /// Works in the same manner as [Angle.atan2], but results
   /// in an angle in `]0.0°;360°]`.
-  factory Angle.atanFullTurn(final double y, final double x) =>
-      Angle.atan2(y, x) + Angle.fromDegrees(180.0);
+  /// Sample values:
+  ///  - `y=0, x=0` => 0°
+  ///  - `y=0, x=1` => 0°
+  ///  - `y=1, x=0` => 90°
+  ///  - `y=0, x=-1` => 180°
+  ///  - `y=-1, x=0` => 270°
+  factory Angle.atanFullTurn(final double y, final double x) {
+    if (y >= 0) {
+      return Angle.atan2(y, x);
+    } else {
+      return Angle.atan2(-y, -x) + Angle.halfTurn();
+    }
+  }
 
   /// Get the angle in turns.
   double get turns => (_storage) / math.pi / 2.0;

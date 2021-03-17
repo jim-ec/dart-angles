@@ -85,8 +85,25 @@ void main() {
       expect(Angle.acos(x.cos).approximately(x, epsilon), true);
       expect(Angle.atan(x.tan).approximately(x, epsilon), true);
 
-      expect(Angle.atan2(-1, 1), Angle.fromDegrees(-45));
+      expect(Angle.atan2(0, 0), Angle.fromDegrees(0));
+      expect(Angle.atan2(0, 1), Angle.fromDegrees(0));
+      expect(Angle.atan2(1, 1), Angle.fromDegrees(45));
+      expect(Angle.atan2(1, 0), Angle.fromDegrees(90));
       expect(Angle.atan2(1, -1), Angle.fromDegrees(135));
+      expect(Angle.atan2(0, -1), Angle.fromDegrees(180));
+      expect(Angle.atan2(-1, -1), Angle.fromDegrees(-135));
+      expect(Angle.atan2(-1, 0), Angle.fromDegrees(-90));
+      expect(Angle.atan2(-1, 1), Angle.fromDegrees(-45));
+
+      expect(Angle.atanFullTurn(0, 0), Angle.fromDegrees(0));
+      expect(Angle.atanFullTurn(0, 1), Angle.fromDegrees(0));
+      expect(Angle.atanFullTurn(1, 1), Angle.fromDegrees(45));
+      expect(Angle.atanFullTurn(1, 0), Angle.fromDegrees(90));
+      expect(Angle.atanFullTurn(1, -1), Angle.fromDegrees(135));
+      expect(Angle.atanFullTurn(0, -1), Angle.fromDegrees(180));
+      expect(Angle.atanFullTurn(-1, -1), Angle.fromDegrees(225));
+      expect(Angle.atanFullTurn(-1, 0), Angle.fromDegrees(270));
+      expect(Angle.atanFullTurn(-1, 1), Angle.fromDegrees(315));
     });
   });
 }
