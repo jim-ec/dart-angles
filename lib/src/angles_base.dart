@@ -112,7 +112,15 @@ class Angle implements Comparable<Angle> {
   String toString() => "${degrees.toStringAsFixed(1)}°";
 
   @override
-  int compareTo(Angle other) => this == other ? 0 : this > other ? 1 : -1;
+  int compareTo(Angle other) {
+    if (this == other) {
+      return 0;
+    } else if (this > other) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
 
   @override
   int get hashCode => _storage.hashCode;
