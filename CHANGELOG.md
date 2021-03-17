@@ -1,5 +1,5 @@
 
-## 2.0
+## 2.0.0
 
 - Updated SDK version.
 - Add a `ratio()` function.
@@ -7,10 +7,10 @@
 - `range` argument of `approximately()` must be non-negative.
 
 
-## 1.2
+## 1.2.0
 
 - Add `.approximately()`
 
-## 1.0
+## 1.0.0
 
 - Initial version
