@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:meta/meta.dart';
 
-/// Represents one angle.
+/// Represents an angle.
 /// The unit used for construction does not matter, as angles internally
 /// always use radians.
 /// The class is designed to be immutable but provides operators like adding
@@ -61,6 +61,12 @@ class Angle implements Comparable<Angle> {
   /// This uses the `atan2()` function, therefore there are two
   /// separate parameters for the nominator and the denominator.
   /// The result is an angle in `]-180°;180°]`.
+  /// Sample values:
+  ///  - `y=0, x=0` => 0°
+  ///  - `y=0, x=1` => 0°
+  ///  - `y=1, x=0` => 90°
+  ///  - `y=0, x=-1` => 180°
+  ///  - `y=-1, x=0` => -90°
   Angle.atan2(final double y, final double x) : _storage = math.atan2(y, x);
 
   /// Works in the same manner as [Angle.atan2], but results
