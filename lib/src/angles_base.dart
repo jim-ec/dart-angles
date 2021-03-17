@@ -144,8 +144,9 @@ class Angle implements Comparable<Angle> {
   bool operator ==(covariant final Angle rhs) => _storage == rhs._storage;
 
   /// Checks if [rhs] is approximately this angle, +/- [range].
+  /// [range] must be non-negative.
   bool approximately(final Angle rhs, final double range) {
+    assert(range >= 0);
     return rhs._storage >= _storage - range && rhs._storage <= _storage + range;
   }
-
 }
