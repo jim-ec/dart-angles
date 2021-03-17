@@ -140,6 +140,9 @@ class Angle implements Comparable<Angle> {
   /// Inverse scale this angle, returning a new angle.
   Angle operator /(final double scale) => Angle.radians(radians / scale);
 
+  /// Returns the ratio between two angles.
+  double ratio(final Angle other) => radians / other.radians;
+
   /// Return a string representation of this angle, optimized to be readable.
   /// The angle is printed in degrees, and only one decimal digit is included.
   @override

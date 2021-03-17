@@ -61,5 +61,6 @@ Trigonometric functions:
 Utility functions:
 - `.toString()`
 - `.approximately(other, range)`
+- `.ratio(other)`
 
 All arithmetic and relational operators are defined on angles as well.

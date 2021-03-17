@@ -20,6 +20,11 @@ void main() {
       expect(Angle.turns(6) / 3, Angle.turns(2));
     });
 
+    test("Ratio", () {
+      expect(Angle.turns(3).ratio(Angle.turns(3)), 1);
+      expect(Angle.turns(6).ratio(Angle.turns(3)), 2);
+    });
+
     test("Addition", () {
       expect(Angle.turns(2) + Angle.turns(3), Angle.turns(5));
       expect(Angle.turns(2) - Angle.turns(3), Angle.turns(-1));
