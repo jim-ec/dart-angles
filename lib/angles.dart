@@ -86,7 +86,7 @@ class Angle implements Comparable<Angle> {
   Angle.atan2(final double y, final double x) : _storage = math.atan2(y, x);
 
   /// Works in the same manner as [Angle.atan2], but results
-  /// in an angle in `]0.0°;360°]`.
+  /// in an angle in `[0°, 360°)`.
   /// Sample values:
   ///  - `y=0, x=0` => 0°
   ///  - `y=0, x=1` => 0°
@@ -146,7 +146,7 @@ class Angle implements Comparable<Angle> {
   String toString() => "${degrees.toStringAsFixed(1)}°";
 
   /// Returns an angle with the some direction, but confined to
-  /// the interval `[0, 360)`.
+  /// the interval `[0°, 360°)`.
   Angle get normalized {
     if (_storage == 0) {
       return Angle.zero();
