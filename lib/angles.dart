@@ -1,6 +1,3 @@
-/// Support for angles in a more readable way than raw doubles.
-/// Never every about the unit your angle is stored in.
-
 library angles;
 
 import 'dart:math' as math;
@@ -148,6 +145,10 @@ class Angle implements Comparable<Angle> {
   @override
   String toString() => "${degrees.toStringAsFixed(1)}°";
 
+  // Compare to another angle. Returns:
+  // - `0`: Both angles are equal.
+  // - `1`: This angle is greater.
+  // - `-1`: This angle is smaller.
   @override
   int compareTo(Angle other) {
     if (this == other) {
