@@ -3,7 +3,7 @@
 [Official Dart package](https://pub.dartlang.org/packages/angles)
 
 This package provides an `Angle` type seeking to eliminate the use of variable suffixes like `...deg` or `...rad`
-as well as manual angle unit conversions like `x * rad2deg` and the likes.
+as well as manual angle unit conversions such as `x * rad2deg` and the likes.
 
 Therefore, this package's *raison d'être* is not to serve features but to increase code maintainability,
 thus reducing maintaince cost and bugs.
