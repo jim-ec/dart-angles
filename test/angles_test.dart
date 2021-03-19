@@ -81,6 +81,17 @@ void main() {
       expect(x.approximately(Angle.degrees(45.1), 0.01), true);
       expect(x.approximately(Angle.degrees(44.9), 0.01), true);
     });
+    test("Normalization", () {
+      expect(Angle.turns(0.0).normalized, Angle.turns(0.0));
+      expect(Angle.turns(-0.0).normalized, Angle.turns(0.0));
+      expect(Angle.turns(1.0).normalized, Angle.turns(0.0));
+
+      expect(Angle.turns(0.3).normalized, Angle.turns(0.3));
+      expect(Angle.turns(2.5).normalized, Angle.turns(0.5));
+
+      expect(Angle.turns(-0.25).normalized, Angle.turns(0.75));
+      expect(Angle.turns(-2.25).normalized, Angle.turns(0.75));
+    });
   });
   group("Trigonometric functions", () {
     test("Sinusoidals", () {

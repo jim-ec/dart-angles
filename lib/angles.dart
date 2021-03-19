@@ -145,6 +145,18 @@ class Angle implements Comparable<Angle> {
   @override
   String toString() => "${degrees.toStringAsFixed(1)}°";
 
+  /// Returns an angle with the some direction, but confined to
+  /// the interval `[0, 360)`.
+  Angle get normalized {
+    if (_storage == 0) {
+      return Angle.zero();
+    } else if (_storage > 0) {
+      return Angle.turns(turns.remainder(1.0));
+    } else {
+      return Angle.fullTurn() + Angle.turns(turns.remainder(1.0));
+    }
+  }
+
   // Compare to another angle. Returns:
   // - `0`: Both angles are equal.
   // - `1`: This angle is greater.
