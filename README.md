@@ -57,10 +57,12 @@ Trigonometric functions:
 - `Angle.atan(x)`
 - `Angle.atan2(y, x)`
 - `Angle.atanFullTurn(y, x)`
+- `Angle.cartesian(x, y)`
 
 Utility functions:
 - `.toString()`
 - `.approximately(other, range)`
 - `.ratio(other)`
+- `.normalized`
 
 All arithmetic and relational operators are defined on angles as well.
