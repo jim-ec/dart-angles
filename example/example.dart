@@ -8,8 +8,8 @@ main() {
   final z = Angle.turns(0.5);
 
   print(x.degrees); // = 180.0
-  print(x.radians); // = 3.1415...
-  print(x.turns); // = 0.5
+  print(y.radians); // = 3.1415...
+  print(z.turns); // = 0.5
 
   // One can use built-in trigonometric functions:
   final a = Angle.asin(0.3);
