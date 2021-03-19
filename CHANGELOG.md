@@ -1,5 +1,13 @@
 
+# 2.1.0
+
+
+- Add `normalized` accessor
+- Add `Angle.cartesian` constructor
+
+
 ## 2.0.0
+
 
 - Updated SDK version.
 - Add a `ratio()` function.
@@ -9,8 +17,12 @@
 
 ## 1.2.0
 
+
 - Add `.approximately()`
+
 
 ## 1.0.0
 
+
 - Initial version
+
