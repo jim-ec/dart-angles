@@ -120,13 +120,27 @@ void main() {
       expect(Angle.atanFullTurn(-1, -1), Angle.degrees(225));
       expect(Angle.atanFullTurn(-1, 0), Angle.degrees(270));
       expect(Angle.atanFullTurn(-1, 1), Angle.degrees(315));
+
+      expect(Angle.cartesian(0, 0), Angle.degrees(0));
+      expect(Angle.cartesian(1, 0), Angle.degrees(0));
+      expect(Angle.cartesian(1, 1), Angle.degrees(45));
+      expect(Angle.cartesian(0, 1), Angle.degrees(90));
+      expect(Angle.cartesian(-1, 1), Angle.degrees(135));
+      expect(Angle.cartesian(-1, 0), Angle.degrees(180));
+      expect(Angle.cartesian(-1, -1), Angle.degrees(225));
+      expect(Angle.cartesian(0, -1), Angle.degrees(270));
+      expect(Angle.cartesian(1, -1), Angle.degrees(315));
     });
   });
   group("Compatibility", () {
     test("Constructors", () {
+      // ignore: deprecated_member_use_from_same_package
       expect(Angle.fromDegrees(45), Angle.degrees(45));
+      // ignore: deprecated_member_use_from_same_package
       expect(Angle.fromGradians(45), Angle.gradians(45));
+      // ignore: deprecated_member_use_from_same_package
       expect(Angle.fromRadians(45), Angle.radians(45));
+      // ignore: deprecated_member_use_from_same_package
       expect(Angle.fromTurns(45), Angle.turns(45));
     });
   });

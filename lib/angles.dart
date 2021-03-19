@@ -101,6 +101,12 @@ class Angle implements Comparable<Angle> {
     }
   }
 
+  /// Returns an angle in `[0°, 360°)`, pointing to the cartesian coordinate.
+  /// The `x` axis has angle `0°`, the `y` axis has angle `90°`.
+  factory Angle.cartesian(final double x, final double y) {
+    return Angle.atanFullTurn(y, x);
+  }
+
   /// Get the angle in turns.
   double get turns => (_storage) / math.pi / 2.0;
 
