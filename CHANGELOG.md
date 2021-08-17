@@ -1,3 +1,5 @@
+# Changelog
+
 ## 2.1.1
 
 - Change test import to absolute path: https://github.com/Jim-Eckerlein/dart-angles/pull/5
