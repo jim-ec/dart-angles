@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../lib/angles.dart';
+import 'package:angles/angles.dart';
 
 void main() {
   group("Arithmetical operations", () {
