@@ -1,8 +1,8 @@
-# 2.1.1
+## 2.1.1
 
 - Change test import to absolute path: https://github.com/Jim-Eckerlein/dart-angles/pull/5
 
-# 2.1.0
+## 2.1.0
 
 - Add `normalized` accessor
 - Add `Angle.cartesian` constructor
