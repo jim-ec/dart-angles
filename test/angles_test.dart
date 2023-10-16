@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:test/test.dart';
 
 import 'package:angles/angles.dart';
@@ -142,6 +143,27 @@ void main() {
       expect(Angle.fromRadians(45), Angle.radians(45));
       // ignore: deprecated_member_use_from_same_package
       expect(Angle.fromTurns(45), Angle.turns(45));
+    });
+  });
+  group("Parse", () {
+    test("Radians", () {
+      expect(Angle.parse("pi"), Angle.degrees(180.0));
+      expect(Angle.parse("πrad"), Angle.degrees(180.0));
+      expect(Angle.parse("2π㎭"), Angle.degrees(360.0));
+      expect(Angle.parse("2π"), Angle.degrees(360.0));
+      expect(Angle.parse("0.5pi radians"), Angle.degrees(90.0));
+    });
+    test("Degrees", () {
+      expect(Angle.parse("180deg"), Angle.degrees(180.0));
+      expect(Angle.parse("180° 0′ 0″"), Angle.degrees(180.0));
+      expect(Angle.parse("90h 30m 0s"), Angle.degrees(90.5));
+      expect(Angle.parse("360pi degrees"), Angle.degrees(360.0 * math.pi));
+    });
+    test("Gradians", () {
+      expect(Angle.parse("200grad"), Angle.degrees(180.0));
+      expect(Angle.parse("300gradians"), Angle.degrees(270.0));
+      expect(Angle.parse("400piᵍ"), Angle.degrees(360 * math.pi));
+      expect(Angle.parse("400πgradian"), Angle.degrees(360.0 * math.pi));
     });
   });
 }

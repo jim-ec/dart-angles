@@ -4,6 +4,8 @@ import 'dart:math' as math;
 
 import 'package:meta/meta.dart';
 
+part 'package:angles/angle_type.dart';
+
 /// Represents an angle.
 /// The unit used for construction does not matter, as angles internally
 /// always use radians.
@@ -63,6 +65,34 @@ class Angle implements Comparable<Angle> {
 
   /// Create an angle defining one eighth turn.
   factory Angle.eighthTurn() => Angle.turns(0.125);
+
+  /// Parse [string] to angle. You can specify [type] such as [AngleType.degrees].
+  factory Angle.parse(String string, [AngleType? type]) {
+    // Remove space
+    string = string.replaceAll(" ", "");
+    // Find type when `sep` is null
+    type = type ?? AngleType.values.firstWhere((AngleType s) => string.contains(s.pattern), orElse: () => AngleType.unknown);
+    // Split by pattern
+    final List<String> splits = (type == AngleType.unknown) ? [string] : string.split(type.pattern);
+    // Convert
+    double value = 0.0;
+    for(int i=0; i < splits.length; i++) {
+      double multiplier = 1;
+      final pi = RegExp(r"π|(pi)");
+      if (splits[i].contains(pi)) {
+        multiplier = math.pi;
+        splits[i] = splits[i].replaceAll(pi, "");
+        if (splits[i].isEmpty) {
+          splits[i] = "1";
+        }
+      }
+      if (splits[i] == "") {
+        break;
+      }
+      value += double.parse(splits[i]) * multiplier / math.pow(type.radix, i);
+    }
+    return type.constructor(value);
+  }
 
   /// Create an angle by computing the arc sine of [c].
   Angle.asin(final double c) : _storage = math.asin(c);

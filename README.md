@@ -32,6 +32,19 @@ a1.radians; // = 3.1415...
 a2.turns;   // = 0.5
 ```
 
+You can also convert strings to angles.
+
+```dart
+// Various ways to parse a half turn:
+Angle.parse("180deg"); // = 180.0
+Angle.parse("180.0°"); // = 180.0
+Angle.parse("0.0° 10800.0′ 0.0″"); // = 180.0
+Angle.parse("180degrees"); // = 180.0
+Angle.parse("pi rad"); // = π
+Angle.parse("π radians"); // = π
+Angle.parse("200ᵍ"); // = 200ᵍ
+Angle.parse("200 gradians"); // = 200ᵍ
+```
 
 ## Documentation
 
@@ -41,6 +54,7 @@ Constructors:
 - `Angle.radians(x)`
 - `Angle.gradians(x)`
 - `Angle.turns(x)`
+- `Angle.parse(x)`
 
 Accessors:
 - `.degrees()`
