@@ -4,7 +4,7 @@ import 'dart:math' as math;
 
 import 'package:meta/meta.dart';
 
-part 'package:angles/angle_type.dart';
+part 'package:angles/angle_unit.dart';
 
 /// Represents an angle.
 /// The unit used for construction does not matter, as angles internally
@@ -66,17 +66,20 @@ class Angle implements Comparable<Angle> {
   /// Create an angle defining one eighth turn.
   factory Angle.eighthTurn() => Angle.turns(0.125);
 
-  /// Parse [string] to angle. You can specify [type] such as [AngleType.degrees].
-  factory Angle.parse(String string, [AngleType? type]) {
+  /// Parse [string] to angle. You can specify [unit] such as [AngleUnit.degrees].
+  factory Angle.parse(String string, [AngleUnit? unit]) {
     // Remove space
     string = string.replaceAll(" ", "");
-    // Find type when `sep` is null
-    type = type ?? AngleType.values.firstWhere((AngleType s) => string.contains(s.pattern), orElse: () => AngleType.unknown);
+    // Find unit when `sep` is null
+    unit = unit ??
+        AngleUnit.values.firstWhere((AngleUnit s) => string.contains(s.pattern),
+            orElse: () => AngleUnit.unknown);
     // Split by pattern
-    final List<String> splits = (type == AngleType.unknown) ? [string] : string.split(type.pattern);
+    final List<String> splits =
+        (unit == AngleUnit.unknown) ? [string] : string.split(unit.pattern);
     // Convert
     double value = 0.0;
-    for(int i=0; i < splits.length; i++) {
+    for (int i = 0; i < splits.length; i++) {
       double multiplier = 1;
       final pi = RegExp(r"π|(pi)");
       if (splits[i].contains(pi)) {
@@ -89,9 +92,9 @@ class Angle implements Comparable<Angle> {
       if (splits[i] == "") {
         break;
       }
-      value += double.parse(splits[i]) * multiplier / math.pow(type.radix, i);
+      value += double.parse(splits[i]) * multiplier / math.pow(unit.radix, i);
     }
-    return type.constructor(value);
+    return unit.constructor(value);
   }
 
   /// Create an angle by computing the arc sine of [c].
