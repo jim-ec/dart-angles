@@ -12,7 +12,11 @@ enum AngleUnit {
   // Radians
   radians([r"(rad(ians?)?|㎭)"], Angle.radians, 0),
   // Degrees
-  degrees([r"(°|deg(rees?)?|h(ours?)?)", r"(′|'|m(in(utes?)?)?)", r'(″|"|s(ec(onds?)?)?)'], Angle.degrees, 60),
+  degrees([
+    r"(°|deg(rees?)?|h(ours?)?)",
+    r"(′|'|m(in(utes?)?)?)",
+    r'(″|"|s(ec(onds?)?)?)'
+  ], Angle.degrees, 60),
   // Unknown
   unknown([], Angle.radians, 0);
 
@@ -29,5 +33,4 @@ enum AngleUnit {
 
   /// [RegExp] pattern to match strings
   RegExp get pattern => RegExp(this.expressions.join("|"));
-
 }
