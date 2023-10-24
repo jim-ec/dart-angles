@@ -4,8 +4,6 @@ import 'dart:math' as math;
 
 import 'package:meta/meta.dart';
 
-part 'package:angles/angle_unit.dart';
-
 /// Represents an angle.
 /// The unit used for construction does not matter, as angles internally
 /// always use radians.
@@ -66,35 +64,44 @@ class Angle implements Comparable<Angle> {
   /// Create an angle defining one eighth turn.
   factory Angle.eighthTurn() => Angle.turns(0.125);
 
-  /// Parse [string] to angle. You can specify [unit] such as [AngleUnit.degrees].
-  factory Angle.parse(String string, [AngleUnit? unit]) {
-    // Remove space
+  /// Parse [string] to angle.
+  factory Angle.parse(String string) {
+    final regexGradians = RegExp(r"(grad(ians?)?|ᵍ)");
+    final regexRadians = RegExp(r"(rad(ians?)?|㎭)");
+    final regexPi = RegExp(r"π|(pi)");
+    final regexDegrees = RegExp(
+        "(°|deg(rees?)?|h(ours?)?)|(′|'|m(in(utes?)?)?)|(″|\"|s|s?ec(onds?)?)");
+    // Remove spaces
     string = string.replaceAll(" ", "");
-    // Find unit when `sep` is null
-    unit = unit ??
-        AngleUnit.values.firstWhere((AngleUnit s) => string.contains(s.pattern),
-            orElse: () => AngleUnit.unknown);
-    // Split by pattern
-    final List<String> splits =
-        (unit == AngleUnit.unknown) ? [string] : string.split(unit.pattern);
-    // Convert
-    double value = 0.0;
-    for (int i = 0; i < splits.length; i++) {
-      double multiplier = 1;
-      final pi = RegExp(r"π|(pi)");
-      if (splits[i].contains(pi)) {
-        multiplier = math.pi;
-        splits[i] = splits[i].replaceAll(pi, "");
-        if (splits[i].isEmpty) {
-          splits[i] = "1";
+    if (string.contains(regexGradians)) {
+      // Gradians
+      string = string.replaceAll(regexGradians, "");
+      return Angle.gradians(double.parse(string == "" ? "0" : string));
+    } else if (string.contains(regexRadians) || string.contains(regexPi)) {
+      // Radians
+      bool pi = false;
+      string = string.replaceAll(regexRadians, "");
+      if (string.contains(regexPi)) {
+        string = string.replaceAll(regexPi, "");
+        pi = true;
+        if (string == "") {
+          string = "1";
         }
       }
-      if (splits[i] == "") {
-        break;
+      return Angle.radians(
+          double.parse(string == "" ? "0" : string) * (pi ? math.pi : 1));
+    } else if (string.contains(regexDegrees)) {
+      // Degrees
+      final splits = string.split(regexDegrees);
+      double value = 0;
+      for (int i = 0; i < splits.length; i++) {
+        value +=
+            double.parse(splits[i] == "" ? "0" : splits[i]) / math.pow(60, i);
       }
-      value += double.parse(splits[i]) * multiplier / math.pow(unit.radix, i);
+      return Angle.degrees(value);
     }
-    return unit.constructor(value);
+    // Otherwise
+    return Angle.radians(double.parse(string == "" ? "0" : string));
   }
 
   /// Create an angle by computing the arc sine of [c].
