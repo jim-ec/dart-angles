@@ -64,6 +64,46 @@ class Angle implements Comparable<Angle> {
   /// Create an angle defining one eighth turn.
   factory Angle.eighthTurn() => Angle.turns(0.125);
 
+  /// Parse [string] to angle.
+  factory Angle.parse(String string) {
+    final regexGradians = RegExp(r"(grad(ians?)?|ᵍ)");
+    final regexRadians = RegExp(r"(rad(ians?)?|㎭)");
+    final regexPi = RegExp(r"π|(pi)");
+    final regexDegrees = RegExp(
+        "(°|deg(rees?)?|h(ours?)?)|(′|'|m(in(utes?)?)?)|(″|\"|s|s?ec(onds?)?)");
+    // Remove spaces
+    string = string.replaceAll(" ", "");
+    if (string.contains(regexGradians)) {
+      // Gradians
+      string = string.replaceAll(regexGradians, "");
+      return Angle.gradians(double.parse(string == "" ? "0" : string));
+    } else if (string.contains(regexRadians) || string.contains(regexPi)) {
+      // Radians
+      bool pi = false;
+      string = string.replaceAll(regexRadians, "");
+      if (string.contains(regexPi)) {
+        string = string.replaceAll(regexPi, "");
+        pi = true;
+        if (string == "") {
+          string = "1";
+        }
+      }
+      return Angle.radians(
+          double.parse(string == "" ? "0" : string) * (pi ? math.pi : 1));
+    } else if (string.contains(regexDegrees)) {
+      // Degrees
+      final splits = string.split(regexDegrees);
+      double value = 0;
+      for (int i = 0; i < splits.length; i++) {
+        value +=
+            double.parse(splits[i] == "" ? "0" : splits[i]) / math.pow(60, i);
+      }
+      return Angle.degrees(value);
+    }
+    // Otherwise
+    return Angle.radians(double.parse(string == "" ? "0" : string));
+  }
+
   /// Create an angle by computing the arc sine of [c].
   Angle.asin(final double c) : _storage = math.asin(c);
 
